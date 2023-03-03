@@ -1,0 +1,430 @@
+{
+  "name": "LUTI Component - Athens",
+  "description": "Land-Use Transport-Interaction (LUTI) Model (Athens).",
+  "modelId": "demo",
+  "versions": [
+    {
+      "versionId": "v1",
+      "versionTopicName" : "luti-ATH-v1",
+      "versionName": "LUTI ATH Version 1",
+      "versionDescription": "Luti (ATH) version of April 2022",
+      "dockerContainerName": "luti-ath-v1"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "file",
+      "key": "ZoneCodesFile",
+      "label": "Zones codes",
+      "description": "This file contains the zone codes.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "ZoneCoordinates",
+      "label": "Zones coordinates",
+      "description": "This file contains the zone coordinates.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "IntrazoneDist",
+      "label": "Intra-zones distances",
+      "description": "This file contains the intra-zones distances.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "CijPrivateMinFilename",
+      "label": "Cij private",
+      "description": "This file contains the cost matrix for private transportation.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "CijPublicMinFilename",
+      "label": "Cij public",
+      "description": "This file contains the cost matrix for public transportation.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataEmployment2019",
+      "label": "Employment 2019",
+      "description": "This file contains employment data for 2019.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataEmployment2030",
+      "label": "Employment 2030",
+      "description": "This file contains employment data for 2030.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataEmployment2045",
+      "label": "Employment 2045",
+      "description": "This file contains employment data for 2045.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "HhFloorspace2019",
+      "label": "Households floorspace 2019",
+      "description": "This file contains households floorspace for 2019.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "HhFloorspace2045",
+      "label": "Households floorspace 2045",
+      "description": "This file contains households floorspace for 2045.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataZonesShapefile",
+      "label": "Zones shapefile",
+      "description": "This shapefile contains the zoning system for this application.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "ZoneCentroidsShapefile",
+      "label": "Zones centroids shapefile",
+      "description": "This shapefile contains the centroids of the zoning system for this application.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "ZoneCentroidsShapefileWGS84",
+      "label": "Zones centroids shapefile in WGS84 CRS",
+      "description": "This shapefile contains the centroids of the zoning system for this application in WGS84 CRS.",
+      "required": true,
+      "value": ""
+    },{
+      "type": "file",
+      "key": "RoadNetworkShapefile",
+      "label": "Main roads shapefile",
+      "description": "This shapefile contains the main roads for this application.",
+      "required": true,
+      "value": ""
+    }
+  ],
+  "outputs": [
+    {
+      "type": "file",
+      "key": "JobsAccessibility2019",
+      "label": "Job accessibility 2019",
+      "description": "This file contains the job accessibility for 2019.",
+      "value": "Jobs_accessibility_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsAccessibility2030",
+      "label": "Job accessibility 2030",
+      "description": "This file contains the job accessibility for 2030.",
+      "value": "Jobs_accessibility_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsAccessibility2045",
+      "label": "Job accessibility 2045",
+      "description": "This file contains the job accessibility for 2045.",
+      "value": "Jobs_accessibility_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "HousingAccessibility2019",
+      "label": "Housing accessibility 2019",
+      "description": "This file contains the housing accessibility for 2019.",
+      "value": "Housing_accessibility_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HousingAccessibility2030",
+      "label": "Housing accessibility 2030",
+      "description": "This file contains the housing accessibility for 2030.",
+      "value": "Housing_accessibility_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HousingAccessibility2045",
+      "label": "Housing accessibility 2045",
+      "description": "This file contains the housing accessibility for 2045.",
+      "value": "Housing_accessibility_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "EjOi2019",
+      "label": "JtW table 2019",
+      "description": "This table contains all the flows for all the modes of the Journey to work model together with jobs and housing accessibility for 2019.",
+      "value": "EiDjOi_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "EjOi2030",
+      "label": "JtW table 2030",
+      "description": "This table contains all the flows for all the modes of the Journey to work model together with jobs and housing accessibility for 2030.",
+      "value": "EiDjOi_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "EjOi2045",
+      "label": "JtW table 2045",
+      "description": "This table contains all the flows for all the modes of the Journey to work model together with jobs and housing accessibility for 2045.",
+      "value": "EiDjOi_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijPublic2019",
+      "label": "JtW flows probabilities (public) 2019",
+      "description": "This file contains the journey to work public flows probabilities for 2019.",
+      "value": "jobs_probTij_public_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijPrivate2019",
+      "label": "JtW flows probabilities (private) 2019",
+      "description": "This file contains the journey to work private flows probabilities for 2019.",
+      "value": "jobs_probTij_private_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijPublic2030",
+      "label": "JtW flows probabilities (public) 2030",
+      "description": "This file contains the journey to work public flows probabilities for 2030.",
+      "value": "jobs_probTij_public_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijPrivate2030",
+      "label": "JtW flows probabilities (private) 2030",
+      "description": "This file contains the journey to work private flows probabilities for 2030.",
+      "value": "jobs_probTij_private_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijPublic2045",
+      "label": "JtW flows probabilities (public) 2045",
+      "description": "This file contains the journey to work public flows probabilities for 2045.",
+      "value": "jobs_probTij_public_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijPrivate2045",
+      "label": "JtW flows probabilities (private) 2045",
+      "description": "This file contains the journey to work private flows probabilities for 2045.",
+      "value": "jobs_probTij_private_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijPublic2019",
+      "label": "JtW flows (public) 2019",
+      "description": "This file contains the journey to work public flows for 2019.",
+      "value": "jobs_Tij_public_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijPrivate2019",
+      "label": "JtW flows (private) 2019",
+      "description": "This file contains the journey to work private flows for 2019.",
+      "value": "jobs_Tij_private_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijPublic2030",
+      "label": "JtW flows (public) 2030",
+      "description": "This file contains the journey to work public flows for 2030.",
+      "value": "jobs_Tij_public_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijPrivate2030",
+      "label": "JtW flows (private) 2030",
+      "description": "This file contains the journey to work private flows for 2030.",
+      "value": "jobs_Tij_private_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijPublic2045",
+      "label": "JtW flows (public) 2045",
+      "description": "This file contains the journey to work public flows for 2045.",
+      "value": "jobs_Tij_public_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijPrivate2045",
+      "label": "JtW flows (private) 2045",
+      "description": "This file contains the journey to work private flows for 2045.",
+      "value": "jobs_Tij_private_2045.csv"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsPublic2019",
+      "label": "JtW flows (public) 2019 (arrow vectors)",
+      "description": "This file contains the journey to work public flows arrow vectors for 2019.",
+      "value": "flows_2019_pu.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsPrivate2019",
+      "label": "JtW flows (private) 2019 (arrow vectors)",
+      "description": "This file contains the journey to work private flows arrow vectors for 2019.",
+      "value": "flows_2019_pr.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsPublic2030",
+      "label": "JtW flows (public) 2030 (arrow vectors)",
+      "description": "This file contains the journey to work public flows arrow vectors for 2030.",
+      "value": "flows_2030_pu.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsPrivate2030",
+      "label": "JtW flows (private) 2030 (arrow vectors)",
+      "description": "This file contains the journey to work private flows arrow vectors for 2030.",
+      "value": "flows_2030_pr.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsPublic2045",
+      "label": "JtW flows (public) 2045 (arrow vectors)",
+      "description": "This file contains the journey to work public flows arrow vectors for 2045.",
+      "value": "flows_2045_pu.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsPrivate2045",
+      "label": "JtW flows (private) 2045 (arrow vectors)",
+      "description": "This file contains the journey to work private flows arrow vectors for 2045.",
+      "value": "flows_2045_pr.geojson"
+    },
+    {
+      "type": "file",
+      "key": "MapPopChange20192030",
+      "label": "Population change 2019-2030",
+      "description": "This file contains a map of the population change between 2019 and 2030.",
+      "value": "pop_change_19-30.png"
+    },
+    {
+      "type": "file",
+      "key": "MapPopChange20302045",
+      "label": "Population change 2030-2045",
+      "description": "This file contains a map of the population change between 2030 and 2045.",
+      "value": "pop_change_30-45.png"
+    },
+    {
+      "type": "file",
+      "key": "MapPopChange20192045",
+      "label": "Population change 2019-2045",
+      "description": "This file contains a map of the population change between 2019 and 2045.",
+      "value": "pop_change_19-45.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192030Public",
+      "label": "Housing accessibility change 2019-2030 (public)",
+      "description": "This file contains a map of the housing accessibility (public) change between 2019 and 2030.",
+      "value": "HA_change_19-30_pu.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192030Private",
+      "label": "Housing accessibility change 2019-2030 (private)",
+      "description": "This file contains a map of the housing accessibility (private) change between 2019 and 2030.",
+      "value": "HA_change_19-30_pr.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192045Public",
+      "label": "Housing accessibility change 2019-2045 (public)",
+      "description": "This file contains a map of the housing accessibility (public) change between 2019 and 2045.",
+      "value": "HA_change_19-45_pu.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192045Private",
+      "label": "Housing accessibility change 2019-2045 (private)",
+      "description": "This file contains a map of the housing accessibility (private) change between 2019 and 2045.",
+      "value": "HA_change_19-45_pr.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20302045Public",
+      "label": "Housing accessibility change 2030-2045 (public)",
+      "description": "This file contains a map of the housing accessibility (public) change between 2030 and 2045.",
+      "value": "HA_change_30-45_pu.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange201302045Private",
+      "label": "Housing accessibility change 2030-2045 (private)",
+      "description": "This file contains a map of the housing accessibility (private) change between 2030 and 2045.",
+      "value": "HA_change_30-45_pr.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192030Public",
+      "label": "Jobs accessibility change 2019-2030 (public)",
+      "description": "This file contains a map of the housing accessibility (public) change between 2019 and 2030.",
+      "value": "JA_change_19-30_pu.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192030Private",
+      "label": "Jobs accessibility change 2019-2030 (private)",
+      "description": "This file contains a map of the housing accessibility (private) change between 2019 and 2030.",
+      "value": "JA_change_19-30_pr.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192045Public",
+      "label": "Jobs accessibility change 2019-2045 (public)",
+      "description": "This file contains a map of the housing accessibility (public) change between 2019 and 2045.",
+      "value": "JA_change_19-45_pu.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192045Private",
+      "label": "Jobs accessibility change 2019-2045 (private)",
+      "description": "This file contains a map of the housing accessibility (private) change between 2019 and 2045.",
+      "value": "JA_change_19-45_pr.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20302045Public",
+      "label": "Jobs accessibility change 2030-2045 (public)",
+      "description": "This file contains a map of the housing accessibility (public) change between 2030 and 2045.",
+      "value": "JA_change_30-45_pu.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20302045Private",
+      "label": "Jobs accessibility change 2030-2045 (private)",
+      "description": "This file contains a map of the housing accessibility (private) change between 2030 and 2045.",
+      "value": "JA_change_30-45_pr.png"
+    },
+    {
+      "type": "file",
+      "key": "MapResultsShapefile",
+      "label": "Results shapefile",
+      "description": "This shapefile contains the results in the for of a map.",
+      "value": "ATH_results.shp"
+    }
+  ]
+}

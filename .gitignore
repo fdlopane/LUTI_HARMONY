@@ -1,0 +1,14 @@
+/.idea
+/src/.venv
+/src/__pycache__
+/src/HARMONY_LUTI_OXF/external-data
+/src/HARMONY_LUTI_TUR/external-data
+/src/HARMONY_LUTI_ATH/external-data
+*.pyc
+/src/Outputs-Athens
+/src/Outputs-Oxfordshire
+/src/Outputs-Turin
+/src/HARMONY_LUTI_OXF/model-runs
+/src/HARMONY_LUTI_TUR/model-runs
+/src/HARMONY_LUTI_ATH/model-runs
+/src/cache

@@ -1,0 +1,828 @@
+{
+  "name": "LUTI Component - Oxfordshire",
+  "description": "Land-Use Transport-Interaction (LUTI) Model (Oxfordshire).",
+  "modelId": "demo",
+  "versions": [
+    {
+      "versionId": "v1",
+      "versionTopicName" : "luti-OXF-v1",
+      "versionName": "LUTI OXF Version 1",
+      "versionDescription": "Luti (OXF) version of April 2022",
+      "dockerContainerName": "luti-oxf-v1"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "file",
+      "key": "DataOpenGeolytixRegression",
+      "label": "Geolytix supermarket data",
+      "description": "This is the open data version of the Geolytix restricted data regression - uses linear regression parameters derived from restricted data that we can't release.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataCensusQS103",
+      "label": "Population (England and Wales)",
+      "description": "Census data (England and Wales): population per MSOA zone.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataCensusQS103SC",
+      "label": "Population (Scotland)",
+      "description": "Census data (Scotland): population per zone.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "LookupDZ2001toIZ2001",
+      "label": "Lookup population (Scotland)",
+      "description": "Lookup table containing geographical information for scottish zones.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "OxfMsoaFile",
+      "label": "Oxfordshire MSOAs",
+      "description": "List of MSOA zones in Oxfordshire.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "ZonesCoordinates",
+      "label": "Zones coordinates",
+      "description": "List of MSOA zones coordinates in Oxfordshire.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "QUANTCijRoadMinFilename",
+      "label": "Cost matrix - roads",
+      "description": "Roads cost matrix from QUANT (travel times in minutes).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "QUANTCijBusMinFilename",
+      "label": "Cost matrix - bus",
+      "description": "Bus cost matrix from QUANT (travel times in minutes).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "QUANTCijRailMinFilename",
+      "label": "Cost matrix - rail",
+      "description": "Rail cost matrix from QUANT (travel times in minutes).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "SObsRoadFilename",
+      "label": "Observed flows - roads",
+      "description": "Observed flows from QUANT (roads).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "SObsBusFilename",
+      "label": "Observed flows - bus",
+      "description": "Observed flows from QUANT (bus).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "SObsRailFilename",
+      "label": "Observed flows - rail",
+      "description": "Observed flows from QUANT (rail).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "OXFNewHousingDev",
+      "label": "Oxfordshire new housing developments",
+      "description": "This file contains the table of new housing developments in Oxfordshire.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "Employment2011GB",
+      "label": "Employment data 2011",
+      "description": "This file contains the employment data by sector and by MSOA zone in Great Britain for 2011.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "Employment2019",
+      "label": "Employment data 2019",
+      "description": "This file contains the employment data by sector and by MSOA zone in Oxfordshire for 2019.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "Employment2030",
+      "label": "Employment data 2030",
+      "description": "This file contains the employment data by sector and by MSOA zone in in Oxfordshire for 2019.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DwellingsOxf",
+      "label": "Number of dwellings",
+      "description": "This file contains a table with the number of dwellings per zone in Oxfordshire.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "ZonesCoordinates",
+      "label": "Zones coordinates",
+      "description": "This file contains the coordinates of the case study area zones.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "OxfPostcodes",
+      "label": "Oxfordshire Postcodes",
+      "description": "This file contains the postcodes of the Oxfordshire County.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataSchoolsEWSPrimary",
+      "label": "Primary Schools data",
+      "description": "This file contains primary schools data (locations and capacities) for England, Wales and Scotland.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataSchoolsEWSPSecondary",
+      "label": "Secondary Schools data",
+      "description": "This file contains secondary schools data (locations and capacities) for England, Wales and Scotland.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "DataHospitals",
+      "label": "Hospitals data",
+      "description": "This file contains NHS hospitals data (locations and number capacities).",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "MsoaShapefile",
+      "label": "MSOAs shapefile",
+      "description": "Shapefile containing the zoning system adopted for the case study area.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "RoadNetworkShapefile",
+      "label": "Road Network shapefile",
+      "description": "Shapefile containing the road network for the case study area.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "MSOACentroidsShapefile",
+      "label": "MSOA centroids shapefile",
+      "description": "Shapefile containing the MSOA centroids for the case study area.",
+      "required": true,
+      "value": ""
+    },
+    {
+      "type": "file",
+      "key": "MSOACentroidsShapefileWGS84",
+      "label": "MSOA centroids shapefile in WGS84 CRS",
+      "description": "Shapefile containing the MSOA centroids for the case study area in WGS84 CRS.",
+      "required": true,
+      "value": ""
+    }
+  ],
+  "outputs": [
+    {
+      "type": "file",
+      "key": "JobsAccessibility2019",
+      "label": "Job accessibility 2019",
+      "description": "This file contains the job accessibility for 2019.",
+      "value": "jobs_accessibility_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsAccessibility2030",
+      "label": "Job accessibility 2030",
+      "description": "This file contains the job accessibility for 2030.",
+      "value": "jobs_accessibility_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HousingAccessibility2019",
+      "label": "Housing accessibility 2019",
+      "description": "This file contains the housing accessibility for 2019.",
+      "value": "housing_accessibility_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HousingAccessibility2030",
+      "label": "Housing accessibility 2030",
+      "description": "This file contains the housing accessibility for 2030.",
+      "value": "housing_accessibility_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsDjOi2019",
+      "label": "JtW table 2019",
+      "description": "This table contains all the flows for all the modes of the Journey to work model together with jobs and housing accessibility for 2019.",
+      "value": "Jobs_DjOi_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsDjOi2030",
+      "label": "JtW table 2030",
+      "description": "This table contains all the flows for all the modes of the Journey to work model together with jobs and housing accessibility for 2030.",
+      "value": "Jobs_DjOi_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijRoads2019",
+      "label": "JtW flows probabilities (roads) 2019",
+      "description": "This file contains the journey to work roads flows probabilities for 2019.",
+      "value": "jobsProbTij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijBus2019",
+      "label": "JtW flows probabilities (bus) 2019",
+      "description": "This file contains the journey to work bus flows probabilities for 2019.",
+      "value": "jobsProbTij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijRail2019",
+      "label": "JtW flows probabilities (rail) 2019",
+      "description": "This file contains the journey to work rail flows probabilities for 2019.",
+      "value": "jobsProbTij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRoads2019",
+      "label": "JtW flows (roads) 2019",
+      "description": "This file contains the journey to work roads flows for 2019.",
+      "value": "jobsTij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijBus2019",
+      "label": "JtW flows (bus) 2019",
+      "description": "This file contains the journey to work bus flows for 2019.",
+      "value": "jobsTij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRail2019",
+      "label": "JtW flows (rail) 2019",
+      "description": "This file contains the journey to work rail flows for 2019.",
+      "value": "jobsTij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsCar2019",
+      "label": "JtW flows (roads) 2019 (arrow vectors)",
+      "description": "This file contains the journey to work roads flows arrow vectors for 2019.",
+      "value": "flows_2019_car.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsBus2019",
+      "label": "JtW flows (bus) 2019 (arrow vectors)",
+      "description": "This file contains the journey to work bus flows arrow vectors for 2019.",
+      "value": "flows_2019_bus.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsRail2019",
+      "label": "JtW flows (rail) 2019 (arrow vectors)",
+      "description": "This file contains the journey to work rail flows arrow vectors for 2019.",
+      "value": "flows_2019_rail.geojson"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijRoads2030",
+      "label": "JtW flows probabilities (roads) 2030",
+      "description": "This file contains the journey to work roads flows probabilities for 2030.",
+      "value": "jobsProbTij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijBus2030",
+      "label": "JtW flows probabilities (bus) 2030",
+      "description": "This file contains the journey to work bus flows probabilities for 2030.",
+      "value": "jobsProbTij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsProbTijRail2030",
+      "label": "JtW flows probabilities (rail) 2030",
+      "description": "This file contains the journey to work rail flows probabilities for 2030.",
+      "value": "jobsProbTij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRoads2030",
+      "label": "JtW flows (roads) 2030",
+      "description": "This file contains the journey to work roads flows for 2030.",
+      "value": "jobsTij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijBus2030",
+      "label": "JtW flows (bus) 2030",
+      "description": "This file contains the journey to work bus flows for 2030.",
+      "value": "jobsTij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRail2030",
+      "label": "JtW flows (rail) 2030",
+      "description": "This file contains the journey to work rail flows for 2030.",
+      "value": "jobsTij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsCar2030",
+      "label": "JtW flows (roads) 2030 (arrow vectors)",
+      "description": "This file contains the journey to work roads flows arrow vectors for 2030.",
+      "value": "flows_2030_car.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsBus2030",
+      "label": "JtW flows (bus) 2030 (arrow vectors)",
+      "description": "This file contains the journey to work bus flows arrow vectors for 2030.",
+      "value": "flows_2030_bus.geojson"
+    },
+    {
+      "type": "file",
+      "key": "ArrowsFlowsRail2030",
+      "label": "JtW flows (rail) 2030 (arrow vectors)",
+      "description": "This file contains the journey to work rail flows arrow vectors for 2030.",
+      "value": "flows_2030_rail.geojson"
+    },
+    {
+      "type": "file",
+      "key": "RetailProbRijRoads2019",
+      "label": "JtR flows probabilities (roads) 2019",
+      "description": "This file contains the journey to retail roads flows probabilities for 2019.",
+      "value": "retailProbRij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailProbRijBus2019",
+      "label": "JtR flows probabilities (bus) 2019",
+      "description": "This file contains the journey to retail bus flows probabilities for 2019.",
+      "value": "retailProbRij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailProbRijRail2019",
+      "label": "JtR flows probabilities (rail) 2019",
+      "description": "This file contains the journey to retail rail flows probabilities for 2019.",
+      "value": "retailProbRij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailRijRoads2019",
+      "label": "JtR flows (roads) 2019",
+      "description": "This file contains the journey to retail roads flows for 2019.",
+      "value": "retailRij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailRijBus2019",
+      "label": "JtR flows (bus) 2019",
+      "description": "This file contains the journey to retail bus flows for 2019.",
+      "value": "retailRij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailRijRail2019",
+      "label": "JtR flows (rail) 2019",
+      "description": "This file contains the journey to retail rail flows for 2019.",
+      "value": "retailRij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailProbRijRoads2030",
+      "label": "JtR flows probabilities (roads) 2030",
+      "description": "This file contains the journey to retail roads flows probabilities for 2030.",
+      "value": "retailProbRij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailProbRijBus2030",
+      "label": "JtR flows probabilities (bus) 2030",
+      "description": "This file contains the journey to retail bus flows probabilities for 2030.",
+      "value": "retailProbRij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailProbRijRail2030",
+      "label": "JtR flows probabilities (rail) 2030",
+      "description": "This file contains the journey to retail rail flows probabilities for 2030.",
+      "value": "retailProbRij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailRijRoads2030",
+      "label": "JtR flows (roads) 2030",
+      "description": "This file contains the journey to retail roads flows for 2030.",
+      "value": "retailRij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailRijBus2030",
+      "label": "JtR flows (bus) 2030",
+      "description": "This file contains the journey to retail bus flows for 2030.",
+      "value": "retailRij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "RetailRijRail2030",
+      "label": "JtR flows (rail) 2030",
+      "description": "This file contains the journey to retail rail flows for 2030.",
+      "value": "retailRij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryProbPijRoads2019",
+      "label": "JtPS flows probabilities (roads) 2019",
+      "description": "This file contains the journey to primary schools roads flows probabilities for 2019.",
+      "value": "primaryProbPij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryProbPijBus2019",
+      "label": "JtPS flows probabilities (bus) 2019",
+      "description": "This file contains the journey to primary schools bus flows probabilities for 2019.",
+      "value": "primaryProbPij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryProbPijRail2019",
+      "label": "JtPS flows probabilities (rail) 2019",
+      "description": "This file contains the journey to primary schools rail flows probabilities for 2019.",
+      "value": "primaryProbPij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryPijRoads2019",
+      "label": "JtPS flows (roads) 2019",
+      "description": "This file contains the journey to primary schools roads flows for 2019.",
+      "value": "primaryPij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryPijBus2019",
+      "label": "JtPS flows (bus) 2019",
+      "description": "This file contains the journey to primary schools bus flows for 2019.",
+      "value": "primaryPij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryPijRail2019",
+      "label": "JtPS flows (rail) 2019",
+      "description": "This file contains the journey to primary schools rail flows for 2019.",
+      "value": "primaryPij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryProbPijRoads2030",
+      "label": "JtPS flows probabilities (roads) 2030",
+      "description": "This file contains the journey to primary schools roads flows probabilities for 2030.",
+      "value": "primaryProbPij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryProbPijBus2030",
+      "label": "JtPS flows probabilities (bus) 2030",
+      "description": "This file contains the journey to primary schools bus flows probabilities for 2030.",
+      "value": "primaryProbPij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryProbPijRail2030",
+      "label": "JtPS flows probabilities (rail) 2030",
+      "description": "This file contains the journey to primary schools rail flows probabilities for 2030.",
+      "value": "primaryProbPij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryPijRoads2030",
+      "label": "JtPS flows (roads) 2030",
+      "description": "This file contains the journey to primary schools roads flows for 2030.",
+      "value": "primaryPij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryPijBus2030",
+      "label": "JtPS flows (bus) 2030",
+      "description": "This file contains the journey to primary schools bus flows for 2030.",
+      "value": "primaryPij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "PrimaryPijRail2030",
+      "label": "JtPS flows (rail) 2030",
+      "description": "This file contains the journey to primary schools rail flows for 2030.",
+      "value": "primaryPij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryProbPijRoads2019",
+      "label": "JtSS flows probabilities (roads) 2019",
+      "description": "This file contains the journey to secondary schools roads flows probabilities for 2019.",
+      "value": "secondaryProbPij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryProbPijBus2019",
+      "label": "JtSS flows probabilities (bus) 2019",
+      "description": "This file contains the journey to secondary schools bus flows probabilities for 2019.",
+      "value": "secondaryProbPij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryProbPijRail2019",
+      "label": "JtSS flows probabilities (rail) 2019",
+      "description": "This file contains the journey to secondary schools rail flows probabilities for 2019.",
+      "value": "secondaryProbPij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryPijRoads2019",
+      "label": "JtSS flows (roads) 2019",
+      "description": "This file contains the journey to secondary schools roads flows for 2019.",
+      "value": "secondaryPij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryPijBus2019",
+      "label": "JtSS flows (bus) 2019",
+      "description": "This file contains the journey to secondary schools bus flows for 2019.",
+      "value": "secondaryPij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryPijRail2019",
+      "label": "JtSS flows (rail) 2019",
+      "description": "This file contains the journey to secondary schools rail flows for 2019.",
+      "value": "secondaryPij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryProbPijRoads2030",
+      "label": "JtSS flows probabilities (roads) 2030",
+      "description": "This file contains the journey to secondary schools roads flows probabilities for 2030.",
+      "value": "secondaryProbPij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryProbPijBus2030",
+      "label": "JtSS flows probabilities (bus) 2030",
+      "description": "This file contains the journey to secondary schools bus flows probabilities for 2030.",
+      "value": "secondaryProbPij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryProbPijRail2030",
+      "label": "JtSS flows probabilities (rail) 2030",
+      "description": "This file contains the journey to secondary schools rail flows probabilities for 2030.",
+      "value": "secondaryProbPij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryPijRoads2030",
+      "label": "JtSS flows (roads) 2030",
+      "description": "This file contains the journey to secondary schools roads flows for 2030.",
+      "value": "secondaryPij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryPijBus2030",
+      "label": "JtSS flows (bus) 2030",
+      "description": "This file contains the journey to secondary schools bus flows for 2030.",
+      "value": "secondaryPij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "SecondaryPijRail2030",
+      "label": "JtSS flows (rail) 2030",
+      "description": "This file contains the journey to secondary schools rail flows for 2030.",
+      "value": "secondaryPij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalProbHijRoads2019",
+      "label": "JtH flows probabilities (roads) 2019",
+      "description": "This file contains the journey to hospitals roads flows probabilities for 2019.",
+      "value": "hospitalProbHij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalProbHijBus2019",
+      "label": "JtH flows probabilities (bus) 2019",
+      "description": "This file contains the journey to hospitals bus flows probabilities for 2019.",
+      "value": "hospitalProbHij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalProbHijRail2019",
+      "label": "JtH flows probabilities (rail) 2019",
+      "description": "This file contains the journey to hospitals rail flows probabilities for 2019.",
+      "value": "hospitalProbHij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalHijRoads2019",
+      "label": "JtH flows (roads) 2019",
+      "description": "This file contains the journey to hospitals roads flows for 2019.",
+      "value": "hospitalHij_roads_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalHijBus2019",
+      "label": "JtH flows (bus) 2019",
+      "description": "This file contains the journey to hospitals bus flows for 2019.",
+      "value": "hospitalHij_bus_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalHijRail2019",
+      "label": "JtH flows (rail) 2019",
+      "description": "This file contains the journey to hospitals rail flows for 2019.",
+      "value": "hospitalHij_rail_2019.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalProbHijRoads2030",
+      "label": "JtH flows probabilities (roads) 2030",
+      "description": "This file contains the journey to hospitals roads flows probabilities for 2030.",
+      "value": "hospitalProbHij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalProbHijBus2030",
+      "label": "JtH flows probabilities (bus) 2030",
+      "description": "This file contains the journey to hospitals bus flows probabilities for 2030.",
+      "value": "hospitalProbHij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalProbHijRail2030",
+      "label": "JtH flows probabilities (rail) 2030",
+      "description": "This file contains the journey to hospitals rail flows probabilities for 2030.",
+      "value": "hospitalProbHij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalHijRoads2030",
+      "label": "JtH flows (roads) 2030",
+      "description": "This file contains the journey to hospitals roads flows for 2030.",
+      "value": "hospitalHij_roads_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalHijBus2030",
+      "label": "JtH flows (bus) 2030",
+      "description": "This file contains the journey to hospitals bus flows for 2030.",
+      "value": "hospitalHij_bus_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "HospitalHijRail2030",
+      "label": "JtH flows (rail) 2030",
+      "description": "This file contains the journey to hospitals rail flows for 2030.",
+      "value": "hospitalHij_rail_2030.csv"
+    },
+    {
+      "type": "file",
+      "key": "MapPopChange20192030",
+      "label": "Population change 2019-2030",
+      "description": "This file contains a map of the population change between 2019 and 2030.",
+      "value": "pop_change_19-30.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192030Roads",
+      "label": "Housing accessibility change 2019-2030 (roads)",
+      "description": "This file contains a map of the housing accessibility (roads) change between 2019 and 2030.",
+      "value": "HA_change_19-30_roads.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192030Bus",
+      "label": "Housing accessibility change 2019-2030 (bus)",
+      "description": "This file contains a map of the housing accessibility (bus) change between 2019 and 2030.",
+      "value": "HA_change_19-30_bus.png"
+    },
+    {
+      "type": "file",
+      "key": "MapHousingAccChange20192030Rail",
+      "label": "Housing accessibility change 2019-2030 (rail)",
+      "description": "This file contains a map of the housing accessibility (rail) change between 2019 and 2030.",
+      "value": "HA_change_19-30_rail.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192030Roads",
+      "label": "Jobs accessibility change 2019-2030 (roads)",
+      "description": "This file contains a map of the housing accessibility (roads) change between 2019 and 2030.",
+      "value": "JA_change_19-30_roads.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192030Bus",
+      "label": "Jobs accessibility change 2019-2030 (bus)",
+      "description": "This file contains a map of the housing accessibility (bus) change between 2019 and 2030.",
+      "value": "JA_change_19-30_bus.png"
+    },
+    {
+      "type": "file",
+      "key": "MapJobsAccChange20192030Rail",
+      "label": "Jobs accessibility change 2019-2030 (rail)",
+      "description": "This file contains a map of the housing accessibility (rail) change between 2019 and 2030.",
+      "value": "JA_change_19-30_rail.png"
+    },
+    {
+      "type": "file",
+      "key": "MapResultsShapefile",
+      "label": "Results shapefile",
+      "description": "This shapefile contains the results in the for of a map.",
+      "value": "OXF_results.shp"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRoads2019FlowMap",
+      "label": "Flows map jobs roads 2019",
+      "description": "This shapefile contains the commuting flows map for roads 2019.",
+      "value": "JobsTijRoads2019FlowMap.png"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijBus2019FlowMap",
+      "label": "Flows map jobs bus 2019",
+      "description": "This shapefile contains the commuting flows map for bus 2019.",
+      "value": "JobsTijBus2019FlowMap.png"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRail2019FlowMap",
+      "label": "Flows map jobs rail 2019",
+      "description": "This shapefile contains the commuting flows map for rail 2019.",
+      "value": "JobsTijRail2019FlowMap.png"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRoads2030FlowMap",
+      "label": "Flows map jobs roads 2030",
+      "description": "This shapefile contains the commuting flows map for roads 2030.",
+      "value": "JobsTijRoads2030FlowMap.png"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijBus2030FlowMap",
+      "label": "Flows map jobs bus 2030",
+      "description": "This shapefile contains the commuting flows map for bus 2030.",
+      "value": "JobsTijBus2030FlowMap.png"
+    },
+    {
+      "type": "file",
+      "key": "JobsTijRail2030FlowMap",
+      "label": "Flows map jobs rail 2030",
+      "description": "This shapefile contains the commuting flows map for rail 2030.",
+      "value": "JobsTijRail2030FlowMap.png"
+    }
+  ]
+}
