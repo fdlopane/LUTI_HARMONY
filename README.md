@@ -19,3 +19,5 @@ Requirements:
 - unicodecsv==0.14.1
 - shapely==1.6.4
 - osmnx==1.2.1
+
+[![DOI](https://zenodo.org/badge/609179688.svg)](https://doi.org/10.5281/zenodo.15641950)
